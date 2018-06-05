@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.codesign.sys.data.mapper.SecurityMapper">
+
+    <resultMap id="sysUserAndAuth" type="cn.codesign.sys.data.model.SysUserAndAuth">
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+        <result column="MOBILE_PHONE" jdbcType="VARCHAR" property="mobilePhone" />
+        <result column="USER_STATUS" jdbcType="INTEGER" property="userStatus" />
+    </resultMap>
+
+    <resultMap id="sysAuthority" type="cn.codesign.sys.data.model.SysAuthority">
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="AUTHORITY_LEVEL" jdbcType="INTEGER" property="authorityLevel" />
+        <result column="AUTHORITY_PARENT_ID" jdbcType="VARCHAR" property="authorityParentId" />
+        <result column="URL" jdbcType="VARCHAR" property="url" />
+    </resultMap>
+
+    <select id="getAuthority" resultMap="sysAuthority">
+        <![CDATA[
+
+		  SELECT
+          DISTINCT T3.ID,T3.AUTHORITY_LEVEL,T3.AUTHORITY_PARENT_ID,T5.URL
+          FROM SYS_USER_ROLE T1 JOIN SYS_ROLE_AUTHORITY T2 ON (T1.ROLE_ID = T2.ROLE_ID AND T1.USER_ID = #{id})
+          JOIN SYS_AUTHORITY T3 ON T2.AUTHORITY_ID = T3.ID
+          JOIN SYS_AUTHORITY_RESOURCE T4 ON T3.ID = T4.AUTHORITY_ID
+          JOIN  SYS_RESOURCE T5 ON T4.RESOURCE_ID = T5.ID
+
+        ]]>
+    </select>
+
+    <select id="getUser" resultMap="sysUserAndAuth">
+        <![CDATA[
+
+			SELECT * FROM SYS_USER T1 JOIN SYS_USER_AUTH T2 ON T1.ID = T2.USER_ID
+            WHERE T2.AUTH_TYPE = #{type} AND T2.IDENTIFIER = #{userName}
+
+        ]]>
+    </select>
+
+    <select id="getSysUser" resultMap="sysUserAndAuth">
+        <![CDATA[
+
+			SELECT * FROM SYS_USER WHERE ID = #{id}
+
+        ]]>
+    </select>
+
+    <select id="getAllAuthority" resultType="map">
+        <![CDATA[
+
+			SELECT T1.AUTHORITY_ID,T2.URL FROM SYS_AUTHORITY_RESOURCE T1
+			JOIN SYS_RESOURCE T2 ON T1.RESOURCE_ID = T2.ID
+
+		]]>
+    </select>
+</mapper>
