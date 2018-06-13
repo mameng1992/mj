@@ -138,7 +138,7 @@ class Login extends Component {
                                 <Grid item xs={12}>
                                     <Button className={classes.button} disabled={login.get('disabled')} variant="raised" color="primary"
                                     onClick={this.onCommit}>
-                                        Send
+                                        登陆
                                         <Icon className={classes.rightIcon}>send</Icon>
                                     </Button>
                                 </Grid>

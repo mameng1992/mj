@@ -5,14 +5,14 @@
 
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="/Users/Sam/.m2/repository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar" />
+    <classPathEntry location="/Users/Sam/.m2/repository/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar" />
     <context id="tables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://172.16.100.130:3306/MJ"
                         userId="mysql"
                         password="Mysql@123">
@@ -48,6 +48,6 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table schema="" tableName="BU_IGNORE_SERVICE"></table>
+        <table schema="" tableName="SYS_USER"></table>
     </context>
 </generatorConfiguration>

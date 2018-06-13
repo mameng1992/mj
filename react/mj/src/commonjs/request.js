@@ -33,11 +33,13 @@ axios.interceptors.response.use(function (response) {
     }
     return response;
 }, function (error) {
-    if(error.response.status = 403) {
-        store.clearAll()
-        window.location.replace('/login')
+    switch (error.response.status) {
+        case 403:
+            store.clearAll()
+            window.location.replace('/login')
+        default:
+            return Promise.reject(error);
     }
-    return Promise.reject(error);
 });
 
 export const post = (url, data) => axios.post(url, data)

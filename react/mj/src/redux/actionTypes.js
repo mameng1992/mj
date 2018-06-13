@@ -14,3 +14,7 @@ export const CHANGE_LEFT_MENU = 'CHANGE_LEFT_MENU' //改变左边菜单状态
 
 /**button**/
 export const CHANGE_BUTTON_STATE = 'CHANGE_BUTTON_STATE' //改版buton状态
+
+/**person**/
+export const SAGA_USER_QUERY = 'SAGA_USER_QUERY' //查询用户信息
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO' //设置用户信息

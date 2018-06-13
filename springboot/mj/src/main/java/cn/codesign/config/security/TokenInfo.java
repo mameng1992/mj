@@ -15,7 +15,7 @@ import java.util.Map;
 public class TokenInfo {
 
     private String token;
-    private Map<String,Map<String,String>> routes;
+    private Map<String,Map<String,SysAuthority>> routes;
     private Map<String,List<SysAuthority>> menu;
 
     public String getToken() {
@@ -26,11 +26,11 @@ public class TokenInfo {
         this.token = token;
     }
 
-    public Map<String, Map<String, String>> getRoutes() {
+    public Map<String, Map<String, SysAuthority>> getRoutes() {
         return routes;
     }
 
-    public void setRoutes(Map<String, Map<String, String>> routes) {
+    public void setRoutes(Map<String, Map<String, SysAuthority>> routes) {
         this.routes = routes;
     }
 

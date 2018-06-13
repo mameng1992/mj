@@ -4,9 +4,9 @@ import {
 import Immutable from 'immutable'
 
 const initialState = Immutable.fromJS({
-    isHidden: false,
+    isHidden: true,
     isShow: false,
-    buttons: []
+    list: []
 })
 
 

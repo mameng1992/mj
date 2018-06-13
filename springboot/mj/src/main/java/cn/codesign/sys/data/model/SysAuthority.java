@@ -12,6 +12,7 @@ public class SysAuthority {
     private String id;
     private int authorityLevel;
     private String authorityParentId;
+    private String authorityName;
     private String url;
 
     public String getId() {
@@ -36,6 +37,14 @@ public class SysAuthority {
 
     public void setAuthorityParentId(String authorityParentId) {
         this.authorityParentId = authorityParentId;
+    }
+
+    public String getAuthorityName() {
+        return authorityName;
+    }
+
+    public void setAuthorityName(String authorityName) {
+        this.authorityName = authorityName;
     }
 
     public String getUrl() {

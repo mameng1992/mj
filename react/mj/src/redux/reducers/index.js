@@ -6,7 +6,8 @@ import rootSaga from 'sagas'
 import login from './login'
 import auth from './auth'
 import home from './home'
-import button from './button'
+import buttons from './buttons'
+import person from './person'
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     login,
     auth,
     home,
-    button,
+    buttons,
+    person,
 })
 
 const store = createStore(

@@ -33,7 +33,7 @@ const theme = createMuiTheme({
 
 const TopMenu = props => {
 
-    const { classes, title, onLeftShow } = props
+    const { classes, title, onLeftShow, onTopClick, onExit } = props
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -48,12 +48,12 @@ const TopMenu = props => {
                             {title}
                         </Typography>
                         <Tooltip title="个人中心">
-                            <IconButton color='inherit'>
+                            <IconButton color='inherit' onClick={onTopClick}>
                                 <AccountCircle />
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="退出">
-                            <IconButton color='inherit' onClick={props.onExit}>
+                            <IconButton color='inherit' onClick={onExit}>
                                 <ExitToApp />
                             </IconButton>
                         </Tooltip>

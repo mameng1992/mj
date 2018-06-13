@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -63,11 +64,11 @@ public class SysServiceImpl implements SysService {
         List<SysAuthority> l1 = list.stream().filter(v -> v.getAuthorityLevel() == 1).collect(Collectors.toList());
         List<SysAuthority> l2 = list.stream().filter(v -> v.getAuthorityLevel() == 2).collect(Collectors.toList());
         List<SysAuthority> l3 = list.stream().filter(v -> v.getAuthorityLevel() == 3).collect(Collectors.toList());
-        Map<String,Map<String,String>> route = new HashMap<>();
+        Map<String,Map<String,SysAuthority>> route = new HashMap<>();
         Map<String,List<SysAuthority>> menu = new HashMap<>();
         l1.stream().forEach(v -> {
             route.put(v.getUrl(), l2.stream().filter(m -> v.getId().equals(m.getAuthorityParentId()))
-                    .collect(Collectors.toMap(SysAuthority::getId,SysAuthority::getUrl)));
+                    .collect(Collectors.toMap(SysAuthority::getUrl,Function.identity())));
         });
         l2.stream().forEach(v -> {
             menu.put(v.getUrl(), l3.stream().filter(m -> v.getId().equals(m.getAuthorityParentId()))

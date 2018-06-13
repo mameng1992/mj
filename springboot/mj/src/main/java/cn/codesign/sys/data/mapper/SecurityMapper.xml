@@ -13,6 +13,7 @@
         <id column="ID" jdbcType="VARCHAR" property="id" />
         <result column="AUTHORITY_LEVEL" jdbcType="INTEGER" property="authorityLevel" />
         <result column="AUTHORITY_PARENT_ID" jdbcType="VARCHAR" property="authorityParentId" />
+        <result column="AUTHORITY_NAME" jdbcType="VARCHAR" property="authorityName" />
         <result column="URL" jdbcType="VARCHAR" property="url" />
     </resultMap>
 
@@ -20,7 +21,7 @@
         <![CDATA[
 
 		  SELECT
-          DISTINCT T3.ID,T3.AUTHORITY_LEVEL,T3.AUTHORITY_PARENT_ID,T5.URL
+          DISTINCT T3.ID,T3.AUTHORITY_LEVEL,T3.AUTHORITY_PARENT_ID,T3.AUTHORITY_NAME,T5.URL
           FROM SYS_USER_ROLE T1 JOIN SYS_ROLE_AUTHORITY T2 ON (T1.ROLE_ID = T2.ROLE_ID AND T1.USER_ID = #{id})
           JOIN SYS_AUTHORITY T3 ON T2.AUTHORITY_ID = T3.ID
           JOIN SYS_AUTHORITY_RESOURCE T4 ON T3.ID = T4.AUTHORITY_ID

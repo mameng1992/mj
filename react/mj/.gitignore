@@ -1,0 +1,12 @@
+
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Mac ###
+*.DS_Store
+
+#webpack
+*public/
+*node_modules/

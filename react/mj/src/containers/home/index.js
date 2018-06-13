@@ -38,6 +38,8 @@ class Home extends Component {
         this.onExit = this.onExit.bind(this)
         this.leftClose = this.leftClose.bind(this)
         this.leftShow = this.leftShow.bind(this)
+        this.onTopClick = this.onTopClick.bind(this)
+        this.leftClick = this.leftClick.bind(this)
     }
 
     componentDidMount() {
@@ -46,6 +48,10 @@ class Home extends Component {
             resize = resize ? null : setTimeout(() =>
                 document.getElementById('paper').style.height = window.innerHeight + 'px',0)
         }
+    }
+
+    componentWillReceiveProps() {
+
     }
 
     onExit() {
@@ -58,29 +64,49 @@ class Home extends Component {
     }
 
     leftShow() {
+        /**只有默认功能，无其他菜单**/
+        // if(this.props.auth.get('menu').size === 1) {
+        //     return false
+        // }
         const obj = {leftShow: true}
         this.props.changeLeftMenu(obj)
+    }
+
+    onTopClick() {
+        this.props.history.push('/home')
+    }
+
+    leftClick() {
+
     }
 
 
     render() {
         const { classes, home } = this.props
-
         return (
             <div className={classes.root}>
                 <Grid container spacing={24}>
                     <Grid item xs={12}>
                         <Paper id='paper' className={classes.paper}>
                             <Grid item xs={12} >
-                                <TopMenu onExit={this.onExit} onLeftShow={this.leftShow} title={home.get('title')}/>
+                                <TopMenu
+                                    onExit={this.onExit}
+                                    onLeftShow={this.leftShow}
+                                    title={this.props.auth.getIn(['routes','/home',this.props.location.pathname,'authorityName'])}
+                                    onTopClick={this.onTopClick}
+                                />
                             </Grid>
                             <Grid item xs={12}>
-                                <Routes onCloseHandle={this.leftClose}/>
+                                <Routes />
                             </Grid>
                         </Paper>
                     </Grid>
                 </Grid>
-                <LeftMenu isShow={home.get('leftShow')} handleClose={this.leftClose}/>
+                <LeftMenu
+                    isShow={home.get('leftShow')}
+                    handleClose={this.leftClose}
+                    handleClick={this.leftClick}
+                />
             </div>
         )
     }

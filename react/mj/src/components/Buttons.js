@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 
 
 
-@refresh(['button'])
+@refresh(['buttons'])
 class Buttons extends Component {
     constructor(props, context) {
         super(props, context)
@@ -54,7 +54,7 @@ class Buttons extends Component {
     }
 
     render() {
-        const { classes, button } = this.props
+        const { classes, buttons } = this.props
 
         return (
             <MuiThemeProvider theme={theme}>
@@ -62,9 +62,9 @@ class Buttons extends Component {
                     <SpeedDial
                         ariaLabel="menus"
                         className={classes.speedDial}
-                        hidden={button.get('isHidden')}
+                        hidden={buttons.get('isHidden')}
                         icon={<SpeedDialIcon openIcon={<EditIcon />}  />}
-                        open={button.get('isShow')}
+                        open={buttons.get('isShow')}
                         onBlur={this.handleClose}
                         onClick={this.handleClick}
                         onClose={this.handleClose}
@@ -77,6 +77,11 @@ class Buttons extends Component {
                             icon={<SaveIcon />}
                             tooltipTitle='Save'
                         />
+                        <SpeedDialAction
+                            key='111'
+                            icon={<SaveIcon />}
+                            tooltipTitle='111'
+                        />
                     </SpeedDial>
             </div>
             </MuiThemeProvider>
@@ -87,7 +92,7 @@ class Buttons extends Component {
 
 const mapStateToProps = state => {
     return {
-        button: state.get('button'),
+        buttons: state.get('buttons'),
     }
 }
 
